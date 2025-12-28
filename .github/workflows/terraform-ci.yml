@@ -23,12 +23,20 @@ jobs:
         with:
           terraform_version: 1.5.7
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::231838751658:role/github-terraform-ci
+          aws-region: us-east-1
+
       - name: Terraform fmt
         run: terraform fmt -check
 
       - name: Terraform init
-        run: terraform init -backend=false
+        run: terraform init
 
       - name: Terraform validate
         run: terraform validate
 
+      - name: Terraform plan
+        run: terraform plan -input=false

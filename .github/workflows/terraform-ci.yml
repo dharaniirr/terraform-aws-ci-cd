@@ -1,7 +1,8 @@
+name: Terraform CI
+
 permissions:
   id-token: write
   contents: read
-name: Terraform CI
 
 on:
   pull_request:
